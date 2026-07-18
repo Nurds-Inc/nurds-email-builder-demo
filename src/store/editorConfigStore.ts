@@ -72,7 +72,7 @@ const defaultState: Partial<EditorConfigState> = {
   showSourceCode: true,
   compactMode: false,
   controller: true,
-  showAIIntegration: true,
+  showAIIntegration: false,
   showFrozenBlocks: false,
   showCustomStyles: false,
   showResponsivePreview: true,

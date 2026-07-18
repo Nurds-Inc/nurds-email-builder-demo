@@ -55,7 +55,6 @@ import { useUniversalElement } from "@/hooks/useUniversalElement";
 import customizeCss from "./customize.scss?inline";
 import customizeCss2 from "../Customize/customize.scss?inline";
 import FullScreenLoading from "@/components/FullScreenLoading";
-import axios from "axios";
 import { useEditorConfigStore } from "../../store/editorConfigStore";
 
 import { footerElement } from "../FrozenBlock";
@@ -321,24 +320,6 @@ function MyEditor({ initialValues }: { initialValues: EmailTemplate; }) {
     console.log("onChange", values);
   };
 
-  const AIAssistant: ThemeConfigProps["AIAssistant"] = useMemo(() => {
-    return {
-      async onGenerate(messages) {
-        const { data } = await axios.post<{ content: string; role: string; }>(
-          `https://admin.easyemail.pro/api/ai`,
-          {
-            data: {
-              messages: messages,
-              model: "gpt-3.5-turbo",
-            },
-          },
-        );
-        return { content: data.content, role: data.role };
-      },
-      // options: optionsList,
-    };
-  }, []);
-
   useEffect(() => {
     EditorCore.auth(process.env.CLIENT_ID!)
       .then(() => {
@@ -365,7 +346,7 @@ function MyEditor({ initialValues }: { initialValues: EmailTemplate; }) {
       clientId: process.env.UNSPLASH_CLIENT_ID!,
     },
     hoveringToolbar: hoveringToolbar,
-    AIAssistant: editorConfig.showAIIntegration ? AIAssistant : undefined,
+    AIAssistant: undefined,
     showSourceCode: editorConfig.showSourceCode,
     showLayer: editorConfig.showLayer,
     showPreview: editorConfig.showPreview,
