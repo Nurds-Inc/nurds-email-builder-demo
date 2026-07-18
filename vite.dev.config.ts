@@ -3,15 +3,21 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import svgr from "vite-plugin-svgr";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
+import { easyEmailTokenApiPlugin } from "./vite.easy-email-token-api";
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
     "process.env.UNSPLASH_CLIENT_ID": JSON.stringify(
       process.env.UNSPLASH_CLIENT_ID,
     ),
-    "process.env.CLIENT_ID": JSON.stringify(process.env.CLIENT_ID),
+    "process.env.CLIENT_ID": JSON.stringify(
+      process.env.CLIENT_ID || "NURDS_STAGING",
+    ),
   },
   plugins: [
+    easyEmailTokenApiPlugin(
+      process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.nurds.com",
+    ),
     react(),
     svgr({ exportAsDefault: true }) as any,
     monacoEditorPlugin({}) as any,

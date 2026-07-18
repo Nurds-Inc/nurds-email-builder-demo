@@ -3,12 +3,18 @@ import path from "path";
 import svgr from "vite-plugin-svgr";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
 import dotenv from "dotenv";
+import { easyEmailTokenApiPlugin } from "./vite.easy-email-token-api";
 
 const env = dotenv.config();
+const emailBuilderTokenApiOrigin =
+  process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.nurds.com";
+const emailBuilderClientId =
+  env.parsed?.CLIENT_ID || process.env.CLIENT_ID || "NURDS_STAGING";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    easyEmailTokenApiPlugin(emailBuilderTokenApiOrigin),
     svgr({ exportAsDefault: true }) as any,
     monacoEditorPlugin({}) as any,
     // sentryVitePlugin({
@@ -22,7 +28,7 @@ export default defineConfig({
       process.env.UNSPLASH_CLIENT_ID,
     ),
     "process.env.CLIENT_ID": JSON.stringify(
-      env.parsed?.CLIENT_ID || process.env.CLIENT_ID,
+      emailBuilderClientId,
     ),
   },
   build: {
