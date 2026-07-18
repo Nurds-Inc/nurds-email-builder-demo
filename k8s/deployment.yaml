@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: email-builder-demo
-          image: ghcr.io/nurds-inc/nurds-email-builder-demo:INITIAL_IMAGE
+          image: ghcr.io/nurds-inc/nurds-email-builder-demo@sha256:9e77880253f9e27196b2777043b86435993212089bfbc36354eb59b74461316c
           ports:
             - name: http
               containerPort: 8080
@@ -61,4 +61,3 @@ spec:
           emptyDir: {}
         - name: nginx-run
           emptyDir: {}
-
