@@ -16,7 +16,8 @@ export default defineConfig({
   },
   plugins: [
     easyEmailTokenApiPlugin(
-      process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.nurds.com",
+      process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN ||
+        "https://api.sandbox.nurds.com",
     ),
     react(),
     svgr({ exportAsDefault: true }) as any,

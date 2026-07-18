@@ -7,7 +7,7 @@ import { easyEmailTokenApiPlugin } from "./vite.easy-email-token-api";
 
 const env = dotenv.config();
 const emailBuilderTokenApiOrigin =
-  process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.nurds.com";
+  process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.sandbox.nurds.com";
 const emailBuilderClientId =
   env.parsed?.CLIENT_ID || process.env.CLIENT_ID || "NURDS_STAGING";
 
