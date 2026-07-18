@@ -30,6 +30,7 @@ export default defineConfig({
     "process.env.CLIENT_ID": JSON.stringify(
       emailBuilderClientId,
     ),
+    "process.env.NURDS_API_ORIGIN": JSON.stringify(emailBuilderTokenApiOrigin),
   },
   build: {
     emptyOutDir: true,

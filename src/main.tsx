@@ -20,6 +20,7 @@ const UniversalElement2 = React.lazy(() => import("./examples/UniversalElement2"
 const ColorTheme = React.lazy(() => import("./examples/ColorTheme"));
 const Localization = React.lazy(() => import("./examples/Localization"));
 const DynamicData = React.lazy(() => import("./examples/DynamicData"));
+const AIAgent = React.lazy(() => import("./examples/AIAgent"));
 const ResponsiveView = React.lazy(() => import("./examples/ResponsiveView"));
 const SimpleCustomBlock = React.lazy(() => import("./examples/SimpleCustomBlock"));
 const CustomElementComponent = React.lazy(() => import("./examples/CustomElementComponent"));
@@ -39,15 +40,6 @@ function Loading() {
   return <div style={{ padding: 24 }}>Loading editor…</div>;
 }
 
-function DisabledAI() {
-  return (
-    <div style={{ fontFamily: "sans-serif", padding: 32 }}>
-      <h1>AI integration disabled</h1>
-      <p>The staging build does not send prompts to the Easy Email demo API.</p>
-    </div>
-  );
-}
-
 const route = (path: string, element: React.ReactNode) => ({
   path,
   element: <React.Suspense fallback={<Loading />}>{element}</React.Suspense>,
@@ -63,7 +55,7 @@ const router = createBrowserRouter([
   route("/color-theme", <ColorTheme />),
   route("/localization", <Localization />),
   route("/dynamic-data", <DynamicData />),
-  { path: "/ai-agent", element: <DisabledAI /> },
+  route("/ai-agent", <AIAgent />),
   route("/studio", <Studio />),
   route("/studio-custom-field", <StudioCustomField />),
   route("/studio-custom-field-editor", <StudioCustomFieldEditor />),

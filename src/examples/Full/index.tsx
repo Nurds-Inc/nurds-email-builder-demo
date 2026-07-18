@@ -83,6 +83,7 @@ import { prebuiltBlocks } from "./prebuiltBlocks";
 import { categories } from "./categories";
 import { DemoAiAgent } from "../AIAgent/DemoAiAgent";
 import { fetchWebsiteTemplateInitialValues } from "./websiteTemplateLoader";
+import { generateEmailBuilderText } from "@/services/nurdsEmailBuilderApi";
 import { useCompactMode } from "@/hooks/useCompactMode";
 
 const EmailSize = React.lazy(() => import("@/components/EmailSize"));
@@ -320,6 +321,10 @@ function MyEditor({ initialValues }: { initialValues: EmailTemplate; }) {
     console.log("onChange", values);
   };
 
+  const AIAssistant: ThemeConfigProps["AIAssistant"] = useMemo(() => ({
+    onGenerate: generateEmailBuilderText,
+  }), []);
+
   useEffect(() => {
     EditorCore.auth(process.env.CLIENT_ID!)
       .then(() => {
@@ -346,7 +351,7 @@ function MyEditor({ initialValues }: { initialValues: EmailTemplate; }) {
       clientId: process.env.UNSPLASH_CLIENT_ID!,
     },
     hoveringToolbar: hoveringToolbar,
-    AIAssistant: undefined,
+    AIAssistant,
     showSourceCode: editorConfig.showSourceCode,
     showLayer: editorConfig.showLayer,
     showPreview: editorConfig.showPreview,

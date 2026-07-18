@@ -13,6 +13,9 @@ export default defineConfig({
     "process.env.CLIENT_ID": JSON.stringify(
       process.env.CLIENT_ID || "NURDS_STAGING",
     ),
+    "process.env.NURDS_API_ORIGIN": JSON.stringify(
+      process.env.EMAIL_BUILDER_TOKEN_API_ORIGIN || "https://api.sandbox.nurds.com",
+    ),
   },
   plugins: [
     easyEmailTokenApiPlugin(

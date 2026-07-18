@@ -47,6 +47,7 @@ import { AssetManagerModal } from "../Full/AssetManagerModal";
 import { useUniversalElement } from "@/hooks/useUniversalElement";
 import FullScreenLoading from "@/components/FullScreenLoading";
 import { useEditorConfigStore } from "../../store/editorConfigStore";
+import { generateEmailBuilderText } from "@/services/nurdsEmailBuilderApi";
 
 import { footerElement } from "../FrozenBlock";
 import { headerElement } from "../FrozenBlock";
@@ -667,6 +668,10 @@ export default function MyEditor() {
     console.log("onChange", values);
   };
 
+  const AIAssistant: ThemeConfigProps["AIAssistant"] = useMemo(() => ({
+    onGenerate: generateEmailBuilderText,
+  }), []);
+
   useEffect(() => {
     EditorCore.auth(process.env.CLIENT_ID!)
       .then(() => {
@@ -692,7 +697,7 @@ export default function MyEditor() {
       clientId: process.env.UNSPLASH_CLIENT_ID!,
     },
     hoveringToolbar: hoveringToolbar,
-    AIAssistant: undefined,
+    AIAssistant,
     showLayer: true,
     showPreview: true,
     showSidebar: true,

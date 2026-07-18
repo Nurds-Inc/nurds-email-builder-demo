@@ -1,8 +1,7 @@
 import { useCallback } from "react";
+import { uploadEmailBuilderAsset } from "@/services/nurdsEmailBuilderApi";
 export function useUpload() {
-  const upload = useCallback(async (_blob: Blob): Promise<string> => {
-    throw new Error("Image uploads are disabled in this staging build");
-  }, []);
+  const upload = useCallback(uploadEmailBuilderAsset, []);
 
   return {
     upload,

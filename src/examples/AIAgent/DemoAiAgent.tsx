@@ -7,6 +7,7 @@ import {
   type AiChatHandler,
 } from "easy-email-pro-theme";
 import React from 'react';
+import { streamEmailBuilderAgent } from "@/services/nurdsEmailBuilderApi";
 
 const AI_AGENT_HISTORY_STORAGE_KEY =
   "easy-email-pro:demo-ai-agent:v2:ai-agent-history";
@@ -116,24 +117,7 @@ function pruneStoredAiAgentSnapshots(maxCount: number) {
 }
 
 const onChat: AiChatHandler = async (request) => {
-  const sessionId = "demo-ai-agent";
-
-  return fetch("https://agent-api.beacas.com/v1/easy-email/respond-stream", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    signal: request.signal,
-    body: JSON.stringify({
-      sessionId,
-      prompt: { text: request.message },
-      images: request.images || [],
-      template: request.template,
-      history: request.history,
-      editorContext: request.editorContext,
-      decisionResponse: request.decisionResponse,
-    }),
-  });
+  return streamEmailBuilderAgent(request);
 };
 
 export function DemoAiAgent() {
