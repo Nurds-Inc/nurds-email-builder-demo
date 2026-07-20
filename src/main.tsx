@@ -10,6 +10,14 @@ import {
 import { Home } from "./Home";
 import "./global.css";
 
+const ENTITLEMENT_CACHE_VERSION = "2";
+const ENTITLEMENT_CACHE_VERSION_KEY = "nurds-email-builder:entitlement-version";
+
+if (window.localStorage.getItem(ENTITLEMENT_CACHE_VERSION_KEY) !== ENTITLEMENT_CACHE_VERSION) {
+  document.cookie = "e_e_p=; Max-Age=0; path=/; SameSite=Lax";
+  window.localStorage.setItem(ENTITLEMENT_CACHE_VERSION_KEY, ENTITLEMENT_CACHE_VERSION);
+}
+
 const Full = React.lazy(() => import("./examples/Full"));
 const AMP = React.lazy(() => import("./examples/AMP"));
 const Simple = React.lazy(() => import("./examples/Simple"));
