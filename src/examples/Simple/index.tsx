@@ -10,7 +10,7 @@ import { Layout } from "@arco-design/web-react";
 import React from "react";
 import { ElementType, t } from "easy-email-pro-core";
 
-const categories: ThemeConfigProps["categories"] = [
+export const categories: ThemeConfigProps["categories"] = [
   {
     get label() {
       return t("Content");

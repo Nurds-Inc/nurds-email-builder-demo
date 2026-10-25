@@ -82,6 +82,8 @@ export const EditorHeader = (props: {
   hideExport?: boolean;
   showConfiguration?: boolean;
   onSpamScoreClick?: () => void;
+  minimal?: boolean;
+  onBack?: () => void;
 }) => {
   const editor = useSlate();
   const [collapsed, setCollapsed] = React.useState(true);
@@ -445,7 +447,7 @@ export const EditorHeader = (props: {
       <div style={{ position: "relative" }}>
         <PageHeader
           backIcon
-          onBack={() => navigate('/')}
+          onBack={() => props.onBack ? props.onBack() : navigate('/')}
           className="editor-header"
           style={{
             backgroundColor: "rgb(var(--primary-6))",
@@ -489,14 +491,14 @@ export const EditorHeader = (props: {
                   </Tooltip>
                 )}
 
-                <Tooltip content="Examples">
+                {!props.minimal && <Tooltip content="Examples">
                   <Button
                     icon={<LucideMenu size={16} />}
                     onClick={() => setCollapsed((v) => !v)}
                   >
                     <strong>&nbsp;Features & templates</strong>
                   </Button>
-                </Tooltip>
+                </Tooltip>}
 
                 {!props.hideImport && isDev && (
                   <Dropdown
@@ -599,16 +601,16 @@ export const EditorHeader = (props: {
                 >
                   <strong>&nbsp;Documentation</strong>
                 </Button> */}
-                <Button target="_blank" href="/components">
+                {!props.minimal && <Button target="_blank" href="/components">
                   <strong>&nbsp;Blocks</strong>
-                </Button>
-                <Button
+                </Button>}
+                {!props.minimal && <Button
                   icon={<Rocket size={20} />}
                   target="_blank"
                   href="https://www.easyemail.pro/?#trial?utm_source=demo"
                 >
                   <strong>&nbsp;Start Trial</strong>
-                </Button>
+                </Button>}
 
                 {props?.extra}
                 <div />
