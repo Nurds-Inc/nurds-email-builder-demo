@@ -16,14 +16,14 @@ spec:
         app.kubernetes.io/name: email-builder-demo
     spec:
       imagePullSecrets:
-        - name: ghcr-pull
+        - name: harbor-pull
       securityContext:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       containers:
         - name: email-builder-demo
-          image: ghcr.io/nurds-inc/nurds-email-builder-demo@sha256:0f05fffd5b477cd9876f5f1c0242bd60cf84049abecf3bb288d275ea586b52c3
+          image: registry.lab.nurds.com/nurds-internal/nurds-email-builder@sha256:70f5442ce289f3a67a516c8ae08b15d64002a19d0de1d432c2d7a1809addbd44
           ports:
             - name: http
               containerPort: 8080
