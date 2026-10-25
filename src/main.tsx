@@ -43,6 +43,7 @@ const Studio = React.lazy(() => import("./examples/Studio"));
 const StudioCustomField = React.lazy(() => import("./examples/StudioCustomField"));
 const StudioCustomFieldEditor = React.lazy(() => import("./examples/StudioCustomField/editor"));
 const ComponentsPage = React.lazy(() => import("./ComponentsPage"));
+const NurdsEmbed = React.lazy(() => import("./examples/NurdsEmbed"));
 
 function Loading() {
   return <div style={{ padding: 24 }}>Loading editor…</div>;
@@ -80,6 +81,7 @@ const router = createBrowserRouter([
   route("/modern", <Modern />),
   route("/html-to-mjml", <HtmlToMjml />),
   route("/components", <ComponentsPage />),
+  route("/embed", <NurdsEmbed />),
   { path: "*", element: <Navigate to="/" replace /> },
 ]);
 
